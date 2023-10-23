@@ -53,3 +53,31 @@ Hasil dari semua ronde diubah urutan bitnya dengan tabel permutasi akhir yang me
 Hasil dari permutasi akhir adalah teks asli (plaintext).
 
 Seluruh proses di atas menggambarkan cara kerja algoritma DES dalam mengenkripsi dan mendekripsi data dengan menggunakan blok tetap sebesar 64 bit. Keamanan DES bergantung pada ukuran kunci 56 bit yang digunakan, yang saat ini dianggap kurang aman karena kemajuan komputasi modern. Sebagai gantinya, AES (Advanced Encryption Standard) telah digunakan secara luas sebagai pengganti DES karena keamanan yang lebih baik.
+
+<hr>
+
+### Beberapa tabel yang digunakan dalam algoritma DES ini
+
+1. `initial_perm`
+Initial Permutation: Tabel ini digunakan untuk melakukan permutasi awal pada data masukan (plaintext) sebelum dimasukkan ke dalam algoritma DES. Ini mengatur ulang urutan bit-bit plaintext sesuai dengan urutan yang diperlukan oleh algoritma.
+
+2. `final_perm`
+Final Permutation: Ini adalah kebalikan dari tabel `initial_perm`. Tabel ini digunakan untuk mengatur ulang urutan bit-bit setelah proses DES selesai (setelah 16 putaran). Ini dilakukan untuk mendapatkan ciphertext akhir.
+
+3. `keyp`
+Permutation Choice 1: Tabel ini digunakan dalam subkunci generasi. Awalnya, kunci yang diberikan adalah 64 bit, dan tabel ini mengurangi kunci menjadi 56 bit dengan menghilangkan beberapa bit tertentu.
+
+4. `key_comp`
+Permutation Choice 2: Tabel ini juga digunakan dalam subkunci generasi. Setelah `keyp` menghasilkan 56 bit kunci, tabel ini digunakan untuk menghasilkan kunci subrondom 48 bit dari kunci 56 bit.
+
+5. `exp_d`
+Expansion: Tabel ekspansi ini digunakan dalam fungsi f. Tabel ini mengubah 32 bit data setengah blok menjadi 48 bit dengan menggandakan beberapa bit.
+
+6. `sbox`
+Substitution Boxes: Tabel `sbox` ini digunakan dalam langkah fungsi f untuk melakukan substitusi pada blok 48-bit. DES memiliki 8 `sbox`, masing-masing mengambil 6 bit sebagai masukan dan mengeluarkan 4 bit sebagai keluaran.
+
+7. `per`
+Permutation: Tabel permutasi akhir ini digunakan pada akhir fungsi f untuk mengatur ulang 32 bit keluaran S-box.
+
+8. `shift_table`
+Tabel ini digunakan untuk menentukan berapa kali setiap setengah kunci (setiap setengah dari 56 bit kunci awal) akan bergeser (shift) selama proses pembangkitan kunci.
